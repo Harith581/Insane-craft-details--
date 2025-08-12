@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <title>Insane Craft | سيرفر ماين كرافت</title>
+    <meta name="description" content="انضم إلى سيرفر Insane Craft. مجتمع نشط، عوالم مذهلة، وفعاليات مستمرة. ابدأ مغامرتك الآن!" />
+    <meta name="keywords" content="ماين كرافت, سيرفر, Minecraft, Insane Craft, سيرفرات, فعاليات" />
+
+    <!-- Meta للسوشال ميديا -->
+    <meta property="og:title" content="Insane Craft | سيرفر ماين كرافت" />
+    <meta property="og:description" content="انضم إلى سيرفر Insane Craft. مجتمع نشط، عوالم مذهلة، وفعاليات مستمرة!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ar" />
+
+    <!-- خطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            animation: fadeHeader 1s ease-in-out;
+        }
+        h1 {
+            color: #00ffcc;
+            margin: 0;
+        }
+        p {
+            font-size: 18px;
+            color: #ccc;
+        }
+        .server-ip {
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .copy-btn {
+            background: #00ffcc;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            user-select: none;
+        }
+        .copy-btn:hover {
+            background: #00ccaa;
+        }
+        /* Toast Style */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00ffcc;
+            color: black;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            animation: fadein 0.5s, fadeout 0.5s 1.5s;
+            z-index: 9999;
+        }
+        @keyframes fadein {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeout {
+            from {opacity: 1; transform: translateY(0);}
+            to {opacity: 0; transform: translateY(20px);}
+        }
+        @keyframes fadeHeader {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 Insane Craft</h1>
+        <p>انضم إلى مجتمعنا وابدأ مغامرتك الآن!</p>
+
+        <div class="server-ip">
+            IP: <span id="server-ip">insane_craft1.aternos.me</span>
+            <button class="copy-btn" onclick="copyIP()">📋 نسخ</button>
+        </div>
+    </header>
+
+    <main>
+        <h2>عن السيرفر</h2>
+        <p>فعاليات، عوالم مذهلة، وأصدقاء جدد بانتظارك!</p>
+    </main>
+
+    <footer style="margin-top: 30px; font-size: 14px; color: #777;">
+        &copy; 2025 Insane Craft - جميع الحقوق محفوظة
+    </footer>
+
+    <script>
+        function copyIP() {
+            const ip = document.getElementById("server-ip").textContent;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(ip).then(() => {
+                    showToast("✅ تم نسخ IP السيرفر: " + ip);
+                });
+            } else {
+                const tempInput = document.createElement("input");
+                tempInput.value = ip;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                tempInput.setSelectionRange(0, 99999); // لدعم الهواتف
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                showToast("✅ تم نسخ IP السيرفر: " + ip);
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.setAttribute("role", "alert");
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
